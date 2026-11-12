@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIZONE - All AI Tools</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,sans-serif;
+  background:#090914;
+  color:white;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 7%;
+  background:#101020;
+  border-bottom:1px solid #272743;
+}
+.logo{font-size:27px;font-weight:bold;color:#a78bfa}
+.logo span{color:white}
+nav a{
+  color:#ddd;
+  text-decoration:none;
+  margin-left:20px;
+  font-size:14px;
+}
+.hero{
+  text-align:center;
+  padding:75px 15px 45px;
+  background:radial-gradient(ellipse at top,#33205f,#090914 70%);
+}
+.hero h1{font-size:45px;margin-bottom:15px}
+.hero h1 span{color:#a78bfa}
+.hero p{color:#bbb;font-size:16px;line-height:1.7}
+.search{
+  width:90%;
+  max-width:550px;
+  padding:16px;
+  margin-top:30px;
+  border-radius:12px;
+  border:1px solid #51417c;
+  background:#17172a;
+  color:white;
+  font-size:15px;
+  outline:none;
+}
+.search:focus{border-color:#a78bfa}
+.section{padding:35px 7%}
+.section h2{margin-bottom:22px;font-size:25px}
+.categories{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.cat{
+  background:#19192c;
+  color:white;
+  border:1px solid #373451;
+  padding:12px 18px;
+  border-radius:9px;
+  cursor:pointer;
+}
+.cat.active,.cat:hover{
+  background:#7753d8;
+  border-color:#7753d8;
+}
+.tools{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
+}
+.card{
+  background:#141425;
+  border:1px solid #292943;
+  border-radius:14px;
+  padding:22px;
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#9874ed;
+}
+.icon{
+  font-size:35px;
+  margin-bottom:15px;
+}
+.card h3{font-size:19px;margin-bottom:10px}
+.card p{
+  color:#aaa;
+  font-size:14px;
+  line-height:1.6;
+  min-height:45px;
+}
+.tag{
+  display:inline-block;
+  color:#c4a9ff;
+  background:#28203d;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:11px;
+  margin:15px 0;
+}
+.visit{
+  display:block;
+  background:#7954d9;
+  color:white;
+  text-align:center;
+  padding:11px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+.visit:hover{background:#966ff0}
+.empty{color:#aaa;padding:20px 0}
+.about{
+  background:#141425;
+  margin:20px 7%;
+  padding:30px;
+  border-radius:14px;
+  text-align:center;
+}
+.about p{color:#aaa;line-height:1.8;margin-top:12px}
+footer{
+  text-align:center;
+  padding:30px;
+  color:#999;
+  border-top:1px solid #292943;
+}
+footer span{color:#a78bfa}
+@media(max-width:600px){
+  header{padding:17px 5%}
+  .logo{font-size:23px}
+  nav a{margin-left:10px;font-size:12px}
+  .hero h1{font-size:34px}
+  .section{padding:28px 5%}
+  .tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .card{padding:14px}
+  .card h3{font-size:16px}
+  .card p{font-size:12px}
+  .visit{font-size:12px}
+  .about{margin:15px 5%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">AI<span>ZONE</span> ✨</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#tools">Tools</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>Explore The World Of <span>AI</span></h1>
+  <p>Discover powerful AI tools for creativity, productivity and innovation.</p>
+  <input
+    type="text"
+    class="search"
+    id="search"
+    placeholder="🔍 Search AI tools..."
+    oninput="renderTools()"
+  >
+</section>
+
+<section class="section">
+  <h2>Explore Categories</h2>
+  <div class="categories" id="categories"></div>
+</section>
+
+<section class="section" id="tools">
+  <h2>🚀 Popular AI Tools</h2>
+  <div class="tools" id="toolList"></div>
+</section>
+
+<section class="about" id="about">
+  <h2>About AIZONE</h2>
+  <p>
+    AIZONE is your destination for discovering useful
+    Artificial Intelligence tools. Explore AI tools
+    for images, videos, writing, voice and more.
+  </p>
+</section>
+
+<footer>
+  <h3><span>AIZONE</span> ✨</h3>
+  <p>All AI Tools. One Place.</p>
+  <p>© 2026 AIZONE. All rights reserved.</p>
+</footer>
+
+<script>
+
+const tools = [
+{
+ name:"ChatGPT",
+ icon:"🤖",
+ category:"Chat",
+ description:"AI assistant for questions, ideas and writing.",
+ url:"https://chatgpt.com"
+},
+{
+ name:"Google Gemini",
+ icon:"💎",
+ category:"Chat",
+ description:"Google AI assistant for everyday tasks.",
+ url:"https://gemini.google.com"
+},
+{
+ name:"Claude",
+ icon:"🧠",
+ category:"Chat",
+ description:"AI assistant for writing, reasoning and coding.",
+ url:"https://claude.ai"
+},
+{
+ name:"Perplexity",
+ icon:"🔎",
+ category:"Chat",
+ description:"AI-powered search and research assistant.",
+ url:"https://www.perplexity.ai"
+},
+{
+ name:"Canva AI",
+ icon:"🎨",
+ category:"Image",
+ description:"Create designs and images with AI features.",
+ url:"https://www.canva.com"
+},
+{
+ name:"Adobe Firefly",
+ icon:"🖼️",
+ category:"Image",
+ description:"Create and edit visuals using generative AI.",
+ url:"https://firefly.adobe.com"
+},
+{
+ name:"Leonardo AI",
+ icon:"🌈",
+ category:"Image",
+ description:"Explore AI-powered image creation.",
+ url:"https://leonardo.ai"
+},
+{
+ name:"Runway",
+ icon:"🎬",
+ category:"Video",
+ description:"AI tools for creative video generation.",
+ url:"https://runwayml.com"
+},
+{
+ name:"Pika",
+ icon:"🎥",
+ category:"Video",
+ description:"Explore AI video creation tools.",
+ url:"https://pika.art"
+},
+{
+ name:"ElevenLabs",
+ icon:"🎙️",
+ category:"Voice",
+ description:"AI voice and audio creation platform.",
+ url:"https://elevenlabs.io"
+},
+{
+ name:"Suno",
+ icon:"🎵",
+ category:"Voice",
+ description:"Create music with AI.",
+ url:"https://suno.com"
+},
+{
+ name:"Grammarly",
+ icon:"✍️",
+ category:"Writing",
+ description:"AI writing assistance and grammar checking.",
+ url:"https://www.grammarly.com"
+},
+{
+ name:"QuillBot",
+ icon:"📝",
+ category:"Writing",
+ description:"Writing and paraphrasing assistance.",
+ url:"https://quillbot.com"
+},
+{
+ name:"GitHub Copilot",
+ icon:"💻",
+ category:"Coding",
+ description:"AI coding assistant for developers.",
+ url:"https://github.com/features/copilot"
+}
+];
+
+let activeCategory="All";
+
+const categories=[
+ "All","Chat","Image","Video","Voice","Writing","Coding"
+];
+
+function setupCategories(){
+ document.getElementById("categories").innerHTML=
+ categories.map(c=>`
+ <button class="cat ${activeCategory===c?'active':''}"
+ onclick="setCategory('${c}')">${c}</button>
+ `).join("");
+}
+
+function setCategory(c){
+ activeCategory=c;
+ setupCategories();
+ renderTools();
+}
+
+function renderTools(){
+ const query=document.getElementById("search").value.toLowerCase();
+
+ const filtered=tools.filter(t=>
+ (activeCategory==="All"||t.category===activeCategory)&&
+ (t.name.toLowerCase().includes(query)||
+ t.description.toLowerCase().includes(query))
+ );
+
+ document.getElementById("toolList").innerHTML=
+ filtered.length?filtered.map(t=>`
+ <div class="card">
+ <div class="icon">${t.icon}</div>
+ <h3>${t.name}</h3>
+ <p>${t.description}</p>
+ <span class="tag">${t.category}</span>
+ <a class="visit" href="${t.url}"
+ target="_blank" rel="noopener noreferrer">Visit Tool ↗</a>
+ </div>
+ `).join(""):'<p class="empty">No tools found!</p>';
+}
+
+setupCategories();
+renderTools();
+
+</script>
+</body>
+</html>
