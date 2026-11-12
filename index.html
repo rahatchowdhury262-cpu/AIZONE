@@ -4,346 +4,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIZONE - All AI Tools</title>
-
+<title>AIZONE - Discover AI</title>
+<meta name="description" content="Discover the best AI tools for creativity, productivity and innovation.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:Arial,sans-serif;
-  background:#090914;
-  color:white;
-}
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 7%;
-  background:#101020;
-  border-bottom:1px solid #272743;
-}
-.logo{font-size:27px;font-weight:bold;color:#a78bfa}
+:root{--bg:#090914;--panel:#141426;--border:#292943;--purple:#8962ef;--muted:#a7a5b8}
+body{font-family:Arial,sans-serif;background:var(--bg);color:white}
+button,input{font:inherit}
+header{height:75px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:#101020;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
+.logo{font-size:26px;font-weight:900;color:#a78bfa}
 .logo span{color:white}
-nav a{
-  color:#ddd;
-  text-decoration:none;
-  margin-left:20px;
-  font-size:14px;
-}
-.hero{
-  text-align:center;
-  padding:75px 15px 45px;
-  background:radial-gradient(ellipse at top,#33205f,#090914 70%);
-}
-.hero h1{font-size:45px;margin-bottom:15px}
-.hero h1 span{color:#a78bfa}
-.hero p{color:#bbb;font-size:16px;line-height:1.7}
-.search{
-  width:90%;
-  max-width:550px;
-  padding:16px;
-  margin-top:30px;
-  border-radius:12px;
-  border:1px solid #51417c;
-  background:#17172a;
-  color:white;
-  font-size:15px;
-  outline:none;
-}
-.search:focus{border-color:#a78bfa}
-.section{padding:35px 7%}
-.section h2{margin-bottom:22px;font-size:25px}
-.categories{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.cat{
-  background:#19192c;
-  color:white;
-  border:1px solid #373451;
-  padding:12px 18px;
-  border-radius:9px;
-  cursor:pointer;
-}
-.cat.active,.cat:hover{
-  background:#7753d8;
-  border-color:#7753d8;
-}
-.tools{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:18px;
-}
-.card{
-  background:#141425;
-  border:1px solid #292943;
-  border-radius:14px;
-  padding:22px;
-  transition:.25s;
-}
-.card:hover{
-  transform:translateY(-5px);
-  border-color:#9874ed;
-}
-.icon{
-  font-size:35px;
-  margin-bottom:15px;
-}
-.card h3{font-size:19px;margin-bottom:10px}
-.card p{
-  color:#aaa;
-  font-size:14px;
-  line-height:1.6;
-  min-height:45px;
-}
-.tag{
-  display:inline-block;
-  color:#c4a9ff;
-  background:#28203d;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:11px;
-  margin:15px 0;
-}
-.visit{
-  display:block;
-  background:#7954d9;
-  color:white;
-  text-align:center;
-  padding:11px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-}
-.visit:hover{background:#966ff0}
-.empty{color:#aaa;padding:20px 0}
-.about{
-  background:#141425;
-  margin:20px 7%;
-  padding:30px;
-  border-radius:14px;
-  text-align:center;
-}
-.about p{color:#aaa;line-height:1.8;margin-top:12px}
-footer{
-  text-align:center;
-  padding:30px;
-  color:#999;
-  border-top:1px solid #292943;
-}
-footer span{color:#a78bfa}
+nav{display:flex;gap:22px}
+nav a{color:#ddd;text-decoration:none;font-size:14px}
+nav a:hover{color:#b69cff}
+.hero{text-align:center;padding:85px 15px 65px;background:radial-gradient(ellipse at top,#39236d 0%,#151129 40%,#090914 80%)}
+.pill{display:inline-block;padding:9px 15px;border:1px solid #57418d;background:#241b3b;border-radius:30px;color:#c5adff;font-size:12px;margin-bottom:22px}
+.hero h1{font-size:clamp(35px,7vw,65px);line-height:1.12;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(90deg,#a78bfa,#e4b7ff);background-clip:text;color:transparent}
+.hero p{color:#c0bdcf;line-height:1.7;max-width:580px;margin:auto}
+.searchbox{max-width:600px;margin:30px auto 0;display:flex;align-items:center;background:#17172b;border:1px solid #57418d;border-radius:13px;padding:5px 15px}
+.searchbox input{width:100%;padding:13px;background:transparent;border:0;outline:0;color:white}
+.stats{display:flex;justify-content:center;gap:50px;margin-top:35px;flex-wrap:wrap}
+.stat strong{display:block;font-size:23px;color:#c1a5ff}
+.stat small{color:#aaa;font-size:12px}
+.section{padding:38px 6%}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+.heading h2{font-size:24px}
+.muted{color:var(--muted);font-size:13px}
+.categories{display:flex;gap:10px;flex-wrap:wrap}
+.cat{padding:11px 17px;border:1px solid var(--border);border-radius:9px;background:var(--panel);color:#ddd;cursor:pointer}
+.cat.active,.cat:hover{background:var(--purple);border-color:var(--purple);color:white}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:17px}
+.card{background:linear-gradient(145deg,#19192d,#111120);border:1px solid var(--border);border-radius:15px;padding:20px;transition:.25s;min-width:0}
+.card:hover{transform:translateY(-5px);border-color:#8962ef;box-shadow:0 10px 35px #6840b522}
+.cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+.icon{font-size:35px}
+.fav{background:transparent;border:0;color:#999;font-size:23px;cursor:pointer}
+.fav.selected{color:#ff78ad}
+.card h3{font-size:18px;margin-bottom:9px}
+.card p{font-size:13px;line-height:1.6;color:#aaa;min-height:42px}
+.tag{display:inline-block;margin:14px 0;padding:6px 10px;border-radius:20px;background:#29203e;color:#c6adff;font-size:11px}
+.actions{display:flex;gap:8px}
+.actions button,.actions a{flex:1;text-align:center;padding:10px 6px;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;cursor:pointer}
+.details{background:#292541;color:#eee;border:1px solid #423963}
+.visit{background:var(--purple);color:white;border:0}
+.visit:hover{background:#a17eff}
+.empty{text-align:center;color:#aaa;padding:35px;grid-column:1/-1}
+.about{margin:20px 6% 45px;padding:38px 20px;text-align:center;background:linear-gradient(120deg,#251944,#141426);border:1px solid #443264;border-radius:17px}
+.about p{color:#bbb;line-height:1.8;margin:12px auto;max-width:600px}
+footer{text-align:center;padding:30px;border-top:1px solid var(--border);color:#aaa;line-height:2;font-size:13px}
+footer strong{color:#b99aff}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:20;align-items:center;justify-content:center;padding:18px}
+.modalbox{background:#17172b;border:1px solid #5d478c;border-radius:18px;padding:27px;width:100%;max-width:420px}
+.modalbox h2{margin:12px 0}
+.modalbox p{color:#bbb;line-height:1.7;margin:12px 0}
+.modalclose{float:right;background:none;border:0;color:white;font-size:25px;cursor:pointer}
 @media(max-width:600px){
-  header{padding:17px 5%}
-  .logo{font-size:23px}
-  nav a{margin-left:10px;font-size:12px}
-  .hero h1{font-size:34px}
-  .section{padding:28px 5%}
-  .tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .card{padding:14px}
-  .card h3{font-size:16px}
-  .card p{font-size:12px}
-  .visit{font-size:12px}
-  .about{margin:15px 5%}
+ header{padding:0 4%;height:65px}
+ nav{gap:11px}
+ nav a{font-size:12px}
+ .logo{font-size:22px}
+ .hero{padding:65px 15px 45px}
+ .stats{gap:23px}
+ .section{padding:28px 5%}
+ .tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .card{padding:13px}
+ .card h3{font-size:15px}
+ .card p{font-size:12px}
+ .actions{flex-direction:column}
+ .actions button,.actions a{width:100%;font-size:11px}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">AI<span>ZONE</span> ✨</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#tools">Tools</a>
-    <a href="#about">About</a>
-  </nav>
+ <div class="logo">AI<span>ZONE</span> ✦</div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#categories">Categories</a>
+  <a href="#tools">Explore</a>
+  <a href="#about">About</a>
+ </nav>
 </header>
 
 <section class="hero" id="home">
-  <h1>Explore The World Of <span>AI</span></h1>
-  <p>Discover powerful AI tools for creativity, productivity and innovation.</p>
-  <input
-    type="text"
-    class="search"
-    id="search"
-    placeholder="🔍 Search AI tools..."
-    oninput="renderTools()"
-  >
+ <div class="pill">✦ YOUR AI DISCOVERY PLATFORM</div>
+ <h1>Discover the Power of <span>Artificial Intelligence</span></h1>
+ <p>Find the perfect AI tools to create, innovate, learn and achieve more. Everything you need in one place.</p>
+ <div class="searchbox">
+  <span>🔍</span>
+  <input id="search" placeholder="Search 50+ AI tools..." oninput="render()">
+ </div>
+ <div class="stats">
+  <div class="stat"><strong>50+</strong><small>AI Tools</small></div>
+  <div class="stat"><strong>7</strong><small>Categories</small></div>
+  <div class="stat"><strong>100%</strong><small>Free to Explore</small></div>
+ </div>
 </section>
 
-<section class="section">
-  <h2>Explore Categories</h2>
-  <div class="categories" id="categories"></div>
+<section class="section" id="categories">
+ <div class="heading"><h2>Explore Categories</h2></div>
+ <div class="categories" id="categoryList"></div>
 </section>
 
 <section class="section" id="tools">
-  <h2>🚀 Popular AI Tools</h2>
-  <div class="tools" id="toolList"></div>
+ <div class="heading">
+  <div><h2>✨ Discover AI Tools</h2><p class="muted" id="resultCount"></p></div>
+  <button class="cat" onclick="showFavorites()">♥ Favorites</button>
+ </div>
+ <div class="tools" id="toolList"></div>
 </section>
 
 <section class="about" id="about">
-  <h2>About AIZONE</h2>
-  <p>
-    AIZONE is your destination for discovering useful
-    Artificial Intelligence tools. Explore AI tools
-    for images, videos, writing, voice and more.
-  </p>
+ <h2>Welcome to AIZONE ✦</h2>
+ <p>Your gateway to the world of Artificial Intelligence. Discover useful AI platforms for image generation, video creation, voice, writing, coding and more.</p>
+ <p>Explore smarter. Create better. Do more.</p>
 </section>
 
 <footer>
-  <h3><span>AIZONE</span> ✨</h3>
-  <p>All AI Tools. One Place.</p>
-  <p>© 2026 AIZONE. All rights reserved.</p>
+ <strong>AIZONE ✦</strong><br>
+ All AI Tools. One Place.<br>
+ © 2026 AIZONE. All rights reserved.
 </footer>
 
-<script>
-
-const tools = [
-{
- name:"ChatGPT",
- icon:"🤖",
- category:"Chat",
- description:"AI assistant for questions, ideas and writing.",
- url:"https://chatgpt.com"
-},
-{
- name:"Google Gemini",
- icon:"💎",
- category:"Chat",
- description:"Google AI assistant for everyday tasks.",
- url:"https://gemini.google.com"
-},
-{
- name:"Claude",
- icon:"🧠",
- category:"Chat",
- description:"AI assistant for writing, reasoning and coding.",
- url:"https://claude.ai"
-},
-{
- name:"Perplexity",
- icon:"🔎",
- category:"Chat",
- description:"AI-powered search and research assistant.",
- url:"https://www.perplexity.ai"
-},
-{
- name:"Canva AI",
- icon:"🎨",
- category:"Image",
- description:"Create designs and images with AI features.",
- url:"https://www.canva.com"
-},
-{
- name:"Adobe Firefly",
- icon:"🖼️",
- category:"Image",
- description:"Create and edit visuals using generative AI.",
- url:"https://firefly.adobe.com"
-},
-{
- name:"Leonardo AI",
- icon:"🌈",
- category:"Image",
- description:"Explore AI-powered image creation.",
- url:"https://leonardo.ai"
-},
-{
- name:"Runway",
- icon:"🎬",
- category:"Video",
- description:"AI tools for creative video generation.",
- url:"https://runwayml.com"
-},
-{
- name:"Pika",
- icon:"🎥",
- category:"Video",
- description:"Explore AI video creation tools.",
- url:"https://pika.art"
-},
-{
- name:"ElevenLabs",
- icon:"🎙️",
- category:"Voice",
- description:"AI voice and audio creation platform.",
- url:"https://elevenlabs.io"
-},
-{
- name:"Suno",
- icon:"🎵",
- category:"Voice",
- description:"Create music with AI.",
- url:"https://suno.com"
-},
-{
- name:"Grammarly",
- icon:"✍️",
- category:"Writing",
- description:"AI writing assistance and grammar checking.",
- url:"https://www.grammarly.com"
-},
-{
- name:"QuillBot",
- icon:"📝",
- category:"Writing",
- description:"Writing and paraphrasing assistance.",
- url:"https://quillbot.com"
-},
-{
- name:"GitHub Copilot",
- icon:"💻",
- category:"Coding",
- description:"AI coding assistant for developers.",
- url:"https://github.com/features/copilot"
-}
-];
-
-let activeCategory="All";
-
-const categories=[
- "All","Chat","Image","Video","Voice","Writing","Coding"
-];
-
-function setupCategories(){
- document.getElementById("categories").innerHTML=
- categories.map(c=>`
- <button class="cat ${activeCategory===c?'active':''}"
- onclick="setCategory('${c}')">${c}</button>
- `).join("");
-}
-
-function setCategory(c){
- activeCategory=c;
- setupCategories();
- renderTools();
-}
-
-function renderTools(){
- const query=document.getElementById("search").value.toLowerCase();
-
- const filtered=tools.filter(t=>
- (activeCategory==="All"||t.category===activeCategory)&&
- (t.name.toLowerCase().includes(query)||
- t.description.toLowerCase().includes(query))
- );
-
- document.getElementById("toolList").innerHTML=
- filtered.length?filtered.map(t=>`
- <div class="card">
- <div class="icon">${t.icon}</div>
- <h3>${t.name}</h3>
- <p>${t.description}</p>
- <span class="tag">${t.category}</span>
- <a class="visit" href="${t.url}"
- target="_blank" rel="noopener noreferrer">Visit Tool ↗</a>
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+ <div class="modalbox">
+  <button class="modalclose" onclick="closeModal()">×</button>
+  <div class="icon" id="mIcon"></div>
+  <h2 id="mName"></h2>
+  <span class="tag" id="mCategory"></span>
+  <p id="mDescription"></p>
+  <a id="mVisit" class="visit" style="display:block;text-align:center;text-decoration:none;padding:13px;border-radius:8px" target="_blank" rel="noopener noreferrer">Visit Official Website ↗</a>
  </div>
- `).join(""):'<p class="empty">No tools found!</p>';
+</div>
+
+<script>
+const data=[
+["ChatGPT","🤖","Chat","AI assistant for questions, ideas and writing.","https://chatgpt.com"],
+["Gemini","💎","Chat","Google's AI assistant.","https://gemini.google.com"],
+["Claude","🧠","Chat","AI assistant for writing and reasoning.","https://claude.ai"],
+["Perplexity","🔎","Chat","AI-powered search and research.","https://www.perplexity.ai"],
+["Microsoft Copilot","🪟","Chat","AI assistant from Microsoft.","https://copilot.microsoft.com"],
+["Poe","💬","Chat","Explore different AI chatbots.","https://poe.com"],
+["Character AI","🎭","Chat","Chat with AI characters.","https://character.ai"],
+["Hugging Face","🤗","Chat","Explore community AI models.","https://huggingface.co"],
+["Canva","🎨","Image","Design and create visual content.","https://www.canva.com"],
+["Adobe Firefly","🖼️","Image","Generative AI creative tools.","https://firefly.adobe.com"],
+["Leonardo AI","🌈","Image","AI image generation platform.","https://leonardo.ai"],
+["Ideogram","💡","Image","Create images with AI.","https://ideogram.ai"],
+["Krea AI","✨","Image","AI-powered creative tools.","https://www.krea.ai"],
+["Playground AI","🛝","Image","Explore AI image creation.","https://playground.com"],
+["Remove.bg","✂️","Image","Remove image backgrounds.","https://www.remove.bg"],
+["PhotoRoom","📸","Image","AI photo editing tools.","https://www.photoroom.com"],
+["Clipdrop","🧩","Image","AI image editing platform.","https://clipdrop.co"],
+["Runway","🎬","Video","Creative AI video tools.","https://runwayml.com"],
+["Pika","🎥","Video","AI video creation.","https://pika.art"],
+["Luma AI","🌌","Video","AI video and 3D creation.","https://lumalabs.ai"],
+["Kling AI","🎞️","Video","AI video generation.","https://klingai.com"],
+["HeyGen","🗣️","Video","Create AI avatar videos.","https://www.heygen.com"],
+["Synthesia","👤","Video","AI avatar video platform.","https://www.synthesia.io"],
+["InVideo AI","📹","Video","Create videos using AI.","https://invideo.io"],
+["CapCut","✂️","Video","Video editing with AI features.","https://www.capcut.com"],
+["ElevenLabs","🎙️","Voice","AI voice and audio tools.","https://elevenlabs.io"],
+["Murf AI","🎧","Voice","AI voice generation.","https://murf.ai"],
+["Speechify","🔊","Voice","Text-to-speech platform.","https://speechify.com"],
+["Suno","🎵","Voice","Create music with AI.","https://suno.com"],
+["Udio","🎼","Voice","AI music creation.","https://www.udio.com"],
+["Adobe Podcast","🎚️","Voice","AI audio enhancement tools.","https://podcast.adobe.com"],
+["Grammarly","✍️","Writing","Writing and grammar assistant.","https://www.grammarly.com"],
+["QuillBot","📝","Writing","Writing and paraphrasing tools.","https://quillbot.com"],
+["Jasper","📄","Writing","AI writing platform.","https://www.jasper.ai"],
+["Copy.ai","📋","Writing","AI writing and workflow tools.","https://www.copy.ai"],
+["Writesonic","🖊️","Writing","AI content creation.","https://writesonic.com"],
+["DeepL","🌐","Writing","AI translation tools.","https://www.deepl.com"],
+["Notion AI","📒","Writing","AI productivity and writing.","https://www.notion.so/product/ai"],
+["GitHub Copilot","🐙","Coding","AI coding assistant.","https://github.com/features/copilot"],
+["Cursor","⌨️","Coding","AI-powered code editor.","https://cursor.com"],
+["Replit","🚀","Coding","Online coding and AI tools.","https://replit.com"],
+["Bolt","⚡","Coding","Build applications with AI.","https://bolt.new"],
+["Lovable","💜","Coding","Create apps with AI.","https://lovable.dev"],
+["v0","▲","Coding","Generate user interfaces with AI.","https://v0.app"],
+["Windsurf","🏄","Coding","AI-powered coding environment.","https://windsurf.com"],
+["Blackbox AI","⬛","Coding","AI coding assistance.","https://www.blackbox.ai"],
+["Phind","🔍","Coding","AI search for developers.","https://www.phind.com"],
+["Codeium","💻","Coding","AI coding assistance.","https://codeium.com"],
+["Tabnine","🧩","Coding","AI code completion.","https://www.tabnine.com"],
+["Amazon Q Developer","📦","Coding","AI assistant for developers.","https://aws.amazon.com/q/developer/"]
+];
+
+const cats=["All","Chat","Image","Video","Voice","Writing","Coding"];
+let active="All";
+let favorites=[];
+let onlyFavorites=false;
+
+function categories(){
+ document.getElementById("categoryList").innerHTML=cats.map(c=>
+ `<button class="cat ${active===c?'active':''}" onclick="choose('${c}')">${c}</button>`
+ ).join("");
 }
-
-setupCategories();
-renderTools();
-
+function choose(c){
+ active=c;
+ onlyFavorites=false;
+ categories();
+ render();
+}
+function showFavorites(){
+ onlyFavorites=!onlyFavorites;
+ active="All";
+ categories();
+ render();
+}
+function render(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const filtered=data.filter(t=>
+ (active==="All"||t[2]===active)&&
+ (!onlyFavorites||favorites.includes(t[0]))&&
+ (t[0].toLowerCase().includes(q)||t[3].toLowerCase().includes(q))
+ );
+ document.getElementById("resultCount").textContent=
+ filtered.length+" tools available";
+ document.getElementById("toolList").innerHTML=filtered.length?
+ filtered.map(t=>`
+ <article class="card">
+  <div class="cardtop">
+   <div class="icon">${t[1]}</div>
+   <button class="fav ${favorites.includes(t[0])?'selected':''}"
+    onclick="toggleFav('${t[0]}')">♥</button>
+  </div>
+  <h3>${t[0]}</h3>
+  <p>${t[3]}</p>
+  <span class="tag">${t[2]}</span>
+  <div class="actions">
+   <button class="details" onclick="details('${t[0]}')">Details</button>
+   <a class="visit" href="${t[4]}" target="_blank" rel="noopener noreferrer">Visit ↗</a>
+  </div>
+ </article>`).join(""):'<div class="empty">No tools found. Try another search.</div>';
+}
+function toggleFav(name){
+ if(favorites.includes(name)){
+  favorites=favorites.filter(x=>x!==name);
+ }else{favorites.push(name)}
+ render();
+}
+function details(name){
+ const t=data.find(x=>x[0]===name);
+ document.getElementById("mIcon").textContent=t[1];
+ document.getElementById("mName").textContent=t[0];
+ document.getElementById("mCategory").textContent=t[2];
+ document.getElementById("mDescription").textContent=t[3];
+ document.getElementById("mVisit").href=t[4];
+ document.getElementById("modal").style.display="flex";
+}
+function closeModal(){
+ document.getElementById("modal").style.display="none";
+}
+categories();
+render();
 </script>
 </body>
 </html>
