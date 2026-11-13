@@ -1,267 +1,309 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIZONE - Discover AI</title>
-<meta name="description" content="Discover the best AI tools for creativity, productivity and innovation.">
+<meta name="theme-color" content="#090914">
+<title>AIZONE — Discover AI Tools</title>
+<meta name="description" content="Discover 50 useful AI tools for creativity, productivity, design, writing, coding and more.">
+<meta name="google-site-verification" content="yWQTEpBqiyzwZ2GtL2ew3WHrQvmnIq3dW9NcVAtfd-o">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#090914;--panel:#141426;--border:#292943;--purple:#8962ef;--muted:#a7a5b8}
-body{font-family:Arial,sans-serif;background:var(--bg);color:white}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#090914;--panel:#151528;--border:#302b49;--purple:#9568ff;--muted:#aaa7bd}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:white;font-family:Arial,sans-serif}
 button,input{font:inherit}
-header{height:75px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:#101020;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
-.logo{font-size:26px;font-weight:900;color:#a78bfa}
+header{height:72px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:#101020;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.logo{font-size:26px;font-weight:900;color:#b99aff}
 .logo span{color:white}
-nav{display:flex;gap:22px}
+nav{display:flex;gap:24px}
 nav a{color:#ddd;text-decoration:none;font-size:14px}
-nav a:hover{color:#b69cff}
-.hero{text-align:center;padding:85px 15px 65px;background:radial-gradient(ellipse at top,#39236d 0%,#151129 40%,#090914 80%)}
-.pill{display:inline-block;padding:9px 15px;border:1px solid #57418d;background:#241b3b;border-radius:30px;color:#c5adff;font-size:12px;margin-bottom:22px}
-.hero h1{font-size:clamp(35px,7vw,65px);line-height:1.12;margin-bottom:20px}
-.hero h1 span{background:linear-gradient(90deg,#a78bfa,#e4b7ff);background-clip:text;color:transparent}
-.hero p{color:#c0bdcf;line-height:1.7;max-width:580px;margin:auto}
-.searchbox{max-width:600px;margin:30px auto 0;display:flex;align-items:center;background:#17172b;border:1px solid #57418d;border-radius:13px;padding:5px 15px}
-.searchbox input{width:100%;padding:13px;background:transparent;border:0;outline:0;color:white}
+nav a:hover{color:#b99aff}
+.menu{display:none;background:#25213a;color:white;border:1px solid var(--border);padding:9px 13px;border-radius:9px}
+.hero{text-align:center;padding:85px 15px 65px;background:radial-gradient(ellipse at top,#39236d,#090914 75%)}
+.pill{display:inline-block;padding:9px 16px;border:1px solid #57418d;background:#241b3b;border-radius:30px;color:#c5adff;font-size:12px;margin-bottom:22px}
+.hero h1{font-size:clamp(36px,7vw,68px);line-height:1.12;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(90deg,#a78bfa,#e4b7ff);-webkit-background-clip:text;color:transparent}
+.hero p{color:#c0bdcf;line-height:1.8;max-width:600px;margin:auto}
+.searchbox{max-width:620px;margin:30px auto 0;display:flex;align-items:center;background:#17172b;border:1px solid #57418d;border-radius:14px;padding:5px 15px}
+.searchbox input{width:100%;padding:14px;background:transparent;border:0;outline:0;color:white}
 .stats{display:flex;justify-content:center;gap:50px;margin-top:35px;flex-wrap:wrap}
-.stat strong{display:block;font-size:23px;color:#c1a5ff}
+.stat strong{display:block;font-size:25px;color:#c1a5ff}
 .stat small{color:#aaa;font-size:12px}
-.section{padding:38px 6%}
-.heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
-.heading h2{font-size:24px}
+.section{padding:40px 6%}
+.heading{margin-bottom:22px}
+.heading h2{font-size:25px}
 .muted{color:var(--muted);font-size:13px}
 .categories{display:flex;gap:10px;flex-wrap:wrap}
-.cat{padding:11px 17px;border:1px solid var(--border);border-radius:9px;background:var(--panel);color:#ddd;cursor:pointer}
-.cat.active,.cat:hover{background:var(--purple);border-color:var(--purple);color:white}
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:17px}
-.card{background:linear-gradient(145deg,#19192d,#111120);border:1px solid var(--border);border-radius:15px;padding:20px;transition:.25s;min-width:0}
-.card:hover{transform:translateY(-5px);border-color:#8962ef;box-shadow:0 10px 35px #6840b522}
-.cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
-.icon{font-size:35px}
-.fav{background:transparent;border:0;color:#999;font-size:23px;cursor:pointer}
-.fav.selected{color:#ff78ad}
-.card h3{font-size:18px;margin-bottom:9px}
-.card p{font-size:13px;line-height:1.6;color:#aaa;min-height:42px}
-.tag{display:inline-block;margin:14px 0;padding:6px 10px;border-radius:20px;background:#29203e;color:#c6adff;font-size:11px}
-.actions{display:flex;gap:8px}
-.actions button,.actions a{flex:1;text-align:center;padding:10px 6px;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;cursor:pointer}
-.details{background:#292541;color:#eee;border:1px solid #423963}
-.visit{background:var(--purple);color:white;border:0}
-.visit:hover{background:#a17eff}
-.empty{text-align:center;color:#aaa;padding:35px;grid-column:1/-1}
-.about{margin:20px 6% 45px;padding:38px 20px;text-align:center;background:linear-gradient(120deg,#251944,#141426);border:1px solid #443264;border-radius:17px}
-.about p{color:#bbb;line-height:1.8;margin:12px auto;max-width:600px}
-footer{text-align:center;padding:30px;border-top:1px solid var(--border);color:#aaa;line-height:2;font-size:13px}
-footer strong{color:#b99aff}
-.modal{display:none;position:fixed;inset:0;background:#000c;z-index:20;align-items:center;justify-content:center;padding:18px}
-.modalbox{background:#17172b;border:1px solid #5d478c;border-radius:18px;padding:27px;width:100%;max-width:420px}
-.modalbox h2{margin:12px 0}
-.modalbox p{color:#bbb;line-height:1.7;margin:12px 0}
-.modalclose{float:right;background:none;border:0;color:white;font-size:25px;cursor:pointer}
-@media(max-width:600px){
- header{padding:0 4%;height:65px}
- nav{gap:11px}
- nav a{font-size:12px}
- .logo{font-size:22px}
- .hero{padding:65px 15px 45px}
- .stats{gap:23px}
- .section{padding:28px 5%}
- .tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .card{padding:13px}
- .card h3{font-size:15px}
- .card p{font-size:12px}
- .actions{flex-direction:column}
- .actions button,.actions a{width:100%;font-size:11px}
+.cat{padding:11px 17px;border:1px solid var(--border);border-radius:10px;background:var(--panel);color:#ddd;cursor:pointer}
+.cat.active,.cat:hover{background:var(--purple);color:white}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.tool-card{background:linear-gradient(145deg,#19192e,#111120);border:1px solid var(--border);border-radius:16px;padding:22px;transition:.25s}
+.tool-card:hover{transform:translateY(-5px);border-color:var(--purple);box-shadow:0 10px 30px #0005}
+.tool-icon{width:50px;height:50px;display:grid;place-items:center;background:#30234d;border-radius:13px;font-size:25px;margin-bottom:17px}
+.tool-card h3{font-size:18px;margin-bottom:9px}
+.tool-card p{color:var(--muted);font-size:13px;line-height:1.6;min-height:42px}
+.tool-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px}
+.tag{font-size:11px;color:#c5adff;background:#29213e;padding:6px 10px;border-radius:20px}
+.tool-actions{display:flex;gap:8px}
+.tool-actions button{border:1px solid var(--border);background:#25213a;color:white;padding:8px 11px;border-radius:8px;cursor:pointer}
+.tool-actions button:hover{background:var(--purple)}
+.empty{text-align:center;padding:45px;color:var(--muted);grid-column:1/-1}
+.about{background:#121225;border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;padding:65px 20px}
+.about p{max-width:650px;margin:15px auto 0;color:var(--muted);line-height:1.8}
+footer{padding:30px 15px;text-align:center;color:#888;font-size:13px}
+.modal{display:none;position:fixed;inset:0;z-index:30;background:#000b;align-items:center;justify-content:center;padding:20px}
+.modal-box{width:100%;max-width:430px;background:#19192e;border:1px solid var(--border);border-radius:18px;padding:25px}
+.modal-box h2{margin-bottom:12px}
+.modal-box p{color:var(--muted);line-height:1.7;font-size:14px}
+.modal-box button{margin-top:20px;padding:11px 18px;background:var(--purple);color:white;border:0;border-radius:9px;cursor:pointer}
+@media(max-width:650px){
+header{padding:0 5%;height:65px}
+.menu{display:block}
+nav{display:none;position:absolute;top:65px;left:0;right:0;padding:20px;background:#101020;flex-direction:column;border-bottom:1px solid var(--border)}
+nav.show{display:flex}
+.hero{padding:65px 15px 50px}
+.stats{gap:25px}
+.section{padding:35px 5%}
 }
 </style>
- <meta name="google-site-verification" content="yWQTEpBqiyzwZ2GtL2ew3WHrQvmnIq3dW9NcVAtfd-o" />
 </head>
+
 <body>
 
 <header>
- <div class="logo">AI<span>ZONE</span> ✦</div>
- <nav>
-  <a href="#home">Home</a>
-  <a href="#categories">Categories</a>
-  <a href="#tools">Explore</a>
-  <a href="#about">About</a>
- </nav>
+<div class="logo">AI<span>ZONE</span></div>
+<button class="menu" onclick="toggleMenu()">☰</button>
+<nav id="nav">
+<a href="#home">Home</a>
+<a href="#tools">AI Tools</a>
+<a href="#about">About</a>
+</nav>
 </header>
 
 <section class="hero" id="home">
- <div class="pill">✦ YOUR AI DISCOVERY PLATFORM</div>
- <h1>Discover the Power of <span>Artificial Intelligence</span></h1>
- <p>Find the perfect AI tools to create, innovate, learn and achieve more. Everything you need in one place.</p>
- <div class="searchbox">
-  <span>🔍</span>
-  <input id="search" placeholder="Search 50+ AI tools..." oninput="render()">
- </div>
- <div class="stats">
-  <div class="stat"><strong>50+</strong><small>AI Tools</small></div>
-  <div class="stat"><strong>7</strong><small>Categories</small></div>
-  <div class="stat"><strong>100%</strong><small>Free to Explore</small></div>
- </div>
-</section>
-
-<section class="section" id="categories">
- <div class="heading"><h2>Explore Categories</h2></div>
- <div class="categories" id="categoryList"></div>
+<div class="pill">✨ YOUR AI DISCOVERY PLATFORM</div>
+<h1>Discover the Future<br>with <span>AI Tools</span></h1>
+<p>Explore powerful AI tools for creativity, productivity, design, writing, coding and more — all in one place.</p>
+<div class="searchbox">
+<span>🔎</span>
+<input type="text" id="searchInput" placeholder="Search AI tools..." oninput="renderTools()">
+</div>
+<div class="stats">
+<div class="stat"><strong>50+</strong><small>AI TOOLS</small></div>
+<div class="stat"><strong>7</strong><small>CATEGORIES</small></div>
+<div class="stat"><strong>FREE</strong><small>TO EXPLORE</small></div>
+</div>
 </section>
 
 <section class="section" id="tools">
- <div class="heading">
-  <div><h2>✨ Discover AI Tools</h2><p class="muted" id="resultCount"></p></div>
-  <button class="cat" onclick="showFavorites()">♥ Favorites</button>
- </div>
- <div class="tools" id="toolList"></div>
+<div class="heading">
+<h2>Explore AI Tools 🚀</h2>
+<p class="muted">Find the perfect AI tool for your next idea.</p>
+</div>
+
+<div class="categories" id="categories">
+<button class="cat active" onclick="setCategory('All',this)">All</button>
+<button class="cat" onclick="setCategory('Chat',this)">Chat</button>
+<button class="cat" onclick="setCategory('Image',this)">Image</button>
+<button class="cat" onclick="setCategory('Video',this)">Video</button>
+<button class="cat" onclick="setCategory('Voice',this)">Voice</button>
+<button class="cat" onclick="setCategory('Writing',this)">Writing</button>
+<button class="cat" onclick="setCategory('Coding',this)">Coding</button>
+<button class="cat" onclick="setCategory('Favorites',this)">❤️ Favorites</button>
+</div>
+
+<div class="heading" style="margin-top:30px">
+<h2 id="listTitle">All AI Tools</h2>
+</div>
+<div class="tool-grid" id="toolGrid"></div>
 </section>
 
 <section class="about" id="about">
- <h2>Welcome to AIZONE ✦</h2>
- <p>Your gateway to the world of Artificial Intelligence. Discover useful AI platforms for image generation, video creation, voice, writing, coding and more.</p>
- <p>Explore smarter. Create better. Do more.</p>
+<h2>About AIZONE</h2>
+<p>AIZONE is your destination to discover useful AI tools. Explore different categories and find tools that help you create, learn and work smarter.</p>
 </section>
 
 <footer>
- <strong>AIZONE ✦</strong><br>
- All AI Tools. One Place.<br>
- © 2026 AIZONE. All rights reserved.
+<p>© 2026 AIZONE. All rights reserved.</p>
+<p style="margin-top:8px">Made for the AI generation ✨</p>
 </footer>
 
-<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
- <div class="modalbox">
-  <button class="modalclose" onclick="closeModal()">×</button>
-  <div class="icon" id="mIcon"></div>
-  <h2 id="mName"></h2>
-  <span class="tag" id="mCategory"></span>
-  <p id="mDescription"></p>
-  <a id="mVisit" class="visit" style="display:block;text-align:center;text-decoration:none;padding:13px;border-radius:8px" target="_blank" rel="noopener noreferrer">Visit Official Website ↗</a>
- </div>
+<div class="modal" id="modal" onclick="closeModal(event)">
+<div class="modal-box">
+<h2 id="modalTitle">Tool Name</h2>
+<p id="modalDescription"></p>
+<button onclick="closeModal()">Close</button>
+</div>
 </div>
 
 <script>
-const data=[
-["ChatGPT","🤖","Chat","AI assistant for questions, ideas and writing.","https://chatgpt.com"],
-["Gemini","💎","Chat","Google's AI assistant.","https://gemini.google.com"],
-["Claude","🧠","Chat","AI assistant for writing and reasoning.","https://claude.ai"],
-["Perplexity","🔎","Chat","AI-powered search and research.","https://www.perplexity.ai"],
-["Microsoft Copilot","🪟","Chat","AI assistant from Microsoft.","https://copilot.microsoft.com"],
-["Poe","💬","Chat","Explore different AI chatbots.","https://poe.com"],
-["Character AI","🎭","Chat","Chat with AI characters.","https://character.ai"],
-["Hugging Face","🤗","Chat","Explore community AI models.","https://huggingface.co"],
-["Canva","🎨","Image","Design and create visual content.","https://www.canva.com"],
-["Adobe Firefly","🖼️","Image","Generative AI creative tools.","https://firefly.adobe.com"],
-["Leonardo AI","🌈","Image","AI image generation platform.","https://leonardo.ai"],
-["Ideogram","💡","Image","Create images with AI.","https://ideogram.ai"],
-["Krea AI","✨","Image","AI-powered creative tools.","https://www.krea.ai"],
-["Playground AI","🛝","Image","Explore AI image creation.","https://playground.com"],
-["Remove.bg","✂️","Image","Remove image backgrounds.","https://www.remove.bg"],
-["PhotoRoom","📸","Image","AI photo editing tools.","https://www.photoroom.com"],
-["Clipdrop","🧩","Image","AI image editing platform.","https://clipdrop.co"],
-["Runway","🎬","Video","Creative AI video tools.","https://runwayml.com"],
-["Pika","🎥","Video","AI video creation.","https://pika.art"],
-["Luma AI","🌌","Video","AI video and 3D creation.","https://lumalabs.ai"],
-["Kling AI","🎞️","Video","AI video generation.","https://klingai.com"],
-["HeyGen","🗣️","Video","Create AI avatar videos.","https://www.heygen.com"],
-["Synthesia","👤","Video","AI avatar video platform.","https://www.synthesia.io"],
-["InVideo AI","📹","Video","Create videos using AI.","https://invideo.io"],
-["CapCut","✂️","Video","Video editing with AI features.","https://www.capcut.com"],
-["ElevenLabs","🎙️","Voice","AI voice and audio tools.","https://elevenlabs.io"],
-["Murf AI","🎧","Voice","AI voice generation.","https://murf.ai"],
-["Speechify","🔊","Voice","Text-to-speech platform.","https://speechify.com"],
-["Suno","🎵","Voice","Create music with AI.","https://suno.com"],
-["Udio","🎼","Voice","AI music creation.","https://www.udio.com"],
-["Adobe Podcast","🎚️","Voice","AI audio enhancement tools.","https://podcast.adobe.com"],
-["Grammarly","✍️","Writing","Writing and grammar assistant.","https://www.grammarly.com"],
-["QuillBot","📝","Writing","Writing and paraphrasing tools.","https://quillbot.com"],
-["Jasper","📄","Writing","AI writing platform.","https://www.jasper.ai"],
-["Copy.ai","📋","Writing","AI writing and workflow tools.","https://www.copy.ai"],
-["Writesonic","🖊️","Writing","AI content creation.","https://writesonic.com"],
-["DeepL","🌐","Writing","AI translation tools.","https://www.deepl.com"],
-["Notion AI","📒","Writing","AI productivity and writing.","https://www.notion.so/product/ai"],
-["GitHub Copilot","🐙","Coding","AI coding assistant.","https://github.com/features/copilot"],
-["Cursor","⌨️","Coding","AI-powered code editor.","https://cursor.com"],
-["Replit","🚀","Coding","Online coding and AI tools.","https://replit.com"],
-["Bolt","⚡","Coding","Build applications with AI.","https://bolt.new"],
-["Lovable","💜","Coding","Create apps with AI.","https://lovable.dev"],
-["v0","▲","Coding","Generate user interfaces with AI.","https://v0.app"],
-["Windsurf","🏄","Coding","AI-powered coding environment.","https://windsurf.com"],
-["Blackbox AI","⬛","Coding","AI coding assistance.","https://www.blackbox.ai"],
-["Phind","🔍","Coding","AI search for developers.","https://www.phind.com"],
-["Codeium","💻","Coding","AI coding assistance.","https://codeium.com"],
-["Tabnine","🧩","Coding","AI code completion.","https://www.tabnine.com"],
-["Amazon Q Developer","📦","Coding","AI assistant for developers.","https://aws.amazon.com/q/developer/"]
+const tools = [
+["ChatGPT","Chat","💬","AI assistant for answering questions and helping with tasks.","https://chatgpt.com/"],
+["Google Gemini","Chat","✨","Google's AI assistant for ideas, learning and productivity.","https://gemini.google.com/"],
+["Claude","Chat","🧠","AI assistant for writing, analysis and problem solving.","https://claude.ai/"],
+["Microsoft Copilot","Chat","🤖","AI assistant for everyday productivity.","https://copilot.microsoft.com/"],
+["Perplexity","Chat","🔎","AI-powered search and research assistant.","https://www.perplexity.ai/"],
+["Poe","Chat","💭","Explore different AI chatbots in one place.","https://poe.com/"],
+["Character AI","Chat","🎭","Chat with user-created AI characters.","https://character.ai/"],
+["HuggingChat","Chat","🤗","Chat with open AI models.","https://huggingface.co/chat/"],
+
+["Midjourney","Image","🎨","Create images from text prompts.","https://www.midjourney.com/"],
+["Leonardo AI","Image","🖼️","Create AI artwork and visual designs.","https://leonardo.ai/"],
+["Adobe Firefly","Image","🔥","Generate and edit creative images.","https://firefly.adobe.com/"],
+["Ideogram","Image","💡","Generate images with text and design elements.","https://ideogram.ai/"],
+["Canva AI","Image","🌈","Create graphics and designs with AI features.","https://www.canva.com/"],
+["Playground AI","Image","🎮","Explore AI image creation and editing.","https://playground.com/"],
+["Microsoft Designer","Image","🪄","Create designs and graphics with AI.","https://designer.microsoft.com/"],
+["Dream by WOMBO","Image","🌙","Turn creative prompts into artwork.","https://dream.ai/"],
+["NightCafe","Image","🌌","Explore AI-generated art.","https://creator.nightcafe.studio/"],
+["Craiyon","Image","🖍️","Generate images from text descriptions.","https://www.craiyon.com/"],
+["Recraft","Image","✏️","Create illustrations and design assets.","https://www.recraft.ai/"],
+
+["Runway","Video","🎬","AI tools for video creation and editing.","https://runwayml.com/"],
+["Pika","Video","⚡","Create videos using AI prompts.","https://pika.art/"],
+["Luma AI","Video","🌐","Explore AI video and 3D creation.","https://lumalabs.ai/"],
+["Kling AI","Video","🎥","Generate videos with AI.","https://klingai.com/"],
+["Synthesia","Video","👨‍💻","Create AI presenter videos.","https://www.synthesia.io/"],
+["InVideo AI","Video","📹","Create videos from text ideas.","https://invideo.io/"],
+["VEED AI","Video","✂️","Online video editing with AI features.","https://www.veed.io/"],
+["CapCut","Video","🎞️","Video editing with creative AI tools.","https://www.capcut.com/"],
+
+["ElevenLabs","Voice","🎙️","AI voice generation and text-to-speech.","https://elevenlabs.io/"],
+["Suno","Voice","🎵","Create original music with AI.","https://suno.com/"],
+["Udio","Voice","🎧","Explore AI music creation.","https://www.udio.com/"],
+["Speechify","Voice","🗣️","Listen to text with AI voices.","https://speechify.com/"],
+["Murf AI","Voice","🎤","Create voiceovers with AI.","https://murf.ai/"],
+["Adobe Podcast","Voice","🎚️","Improve and edit spoken audio.","https://podcast.adobe.com/"],
+
+["Grammarly","Writing","📝","Writing suggestions and grammar assistance.","https://www.grammarly.com/"],
+["QuillBot","Writing","📚","Paraphrasing and writing assistance.","https://quillbot.com/"],
+["Jasper","Writing","✍️","AI writing and content creation platform.","https://www.jasper.ai/"],
+["Copy.ai","Writing","📄","AI-powered writing and content workflows.","https://www.copy.ai/"],
+["Notion AI","Writing","📓","AI features for notes and productivity.","https://www.notion.so/product/ai"],
+["Wordtune","Writing","🔤","Improve and rewrite your writing.","https://www.wordtune.com/"],
+["DeepL Write","Writing","🌍","Writing and language improvement tools.","https://www.deepl.com/write"],
+
+["GitHub Copilot","Coding","💻","AI coding assistance inside supported editors.","https://github.com/features/copilot"],
+["Cursor","Coding","🖥️","AI-powered code editor.","https://cursor.com/"],
+["Replit","Coding","🚀","Build and explore software projects online.","https://replit.com/"],
+["Codeium","Coding","⚙️","AI coding assistance for developers.","https://codeium.com/"],
+["Blackbox AI","Coding","📦","AI tools for coding and development.","https://www.blackbox.ai/"],
+["Bolt","Coding","⚡","Build web projects with AI assistance.","https://bolt.new/"],
+["Lovable","Coding","💜","Create web applications with AI assistance.","https://lovable.dev/"],
+["v0","Coding","🪄","Generate user interface designs and code.","https://v0.app/"],
+["Phind","Coding","🔍","AI search and assistance for developers.","https://www.phind.com/"],
+["Tabnine","Coding","⌨️","AI code completion and development assistance.","https://www.tabnine.com/"]
 ];
 
-const cats=["All","Chat","Image","Video","Voice","Writing","Coding"];
-let active="All";
-let favorites=[];
-let onlyFavorites=false;
+let activeCategory = "All";
+let favorites = JSON.parse(localStorage.getItem("aizone-favorites") || "[]");
 
-function categories(){
- document.getElementById("categoryList").innerHTML=cats.map(c=>
- `<button class="cat ${active===c?'active':''}" onclick="choose('${c}')">${c}</button>`
- ).join("");
+function toggleMenu(){
+document.getElementById("nav").classList.toggle("show");
 }
-function choose(c){
- active=c;
- onlyFavorites=false;
- categories();
- render();
+
+function setCategory(category,button){
+activeCategory = category;
+document.querySelectorAll(".cat").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+document.getElementById("listTitle").textContent =
+category === "All" ? "All AI Tools" :
+category === "Favorites" ? "Your Favorite Tools" : category + " Tools";
+renderTools();
 }
-function showFavorites(){
- onlyFavorites=!onlyFavorites;
- active="All";
- categories();
- render();
+
+function toggleFavorite(name){
+if(favorites.includes(name)){
+favorites = favorites.filter(x=>x!==name);
+}else{
+favorites.push(name);
 }
-function render(){
- const q=document.getElementById("search").value.toLowerCase();
- const filtered=data.filter(t=>
- (active==="All"||t[2]===active)&&
- (!onlyFavorites||favorites.includes(t[0]))&&
- (t[0].toLowerCase().includes(q)||t[3].toLowerCase().includes(q))
- );
- document.getElementById("resultCount").textContent=
- filtered.length+" tools available";
- document.getElementById("toolList").innerHTML=filtered.length?
- filtered.map(t=>`
- <article class="card">
-  <div class="cardtop">
-   <div class="icon">${t[1]}</div>
-   <button class="fav ${favorites.includes(t[0])?'selected':''}"
-    onclick="toggleFav('${t[0]}')">♥</button>
-  </div>
-  <h3>${t[0]}</h3>
-  <p>${t[3]}</p>
-  <span class="tag">${t[2]}</span>
-  <div class="actions">
-   <button class="details" onclick="details('${t[0]}')">Details</button>
-   <a class="visit" href="${t[4]}" target="_blank" rel="noopener noreferrer">Visit ↗</a>
-  </div>
- </article>`).join(""):'<div class="empty">No tools found. Try another search.</div>';
+localStorage.setItem("aizone-favorites",JSON.stringify(favorites));
+renderTools();
 }
-function toggleFav(name){
- if(favorites.includes(name)){
-  favorites=favorites.filter(x=>x!==name);
- }else{favorites.push(name)}
- render();
+
+function showDetails(name,description){
+document.getElementById("modalTitle").textContent = name;
+document.getElementById("modalDescription").textContent = description;
+document.getElementById("modal").style.display = "flex";
 }
-function details(name){
- const t=data.find(x=>x[0]===name);
- document.getElementById("mIcon").textContent=t[1];
- document.getElementById("mName").textContent=t[0];
- document.getElementById("mCategory").textContent=t[2];
- document.getElementById("mDescription").textContent=t[3];
- document.getElementById("mVisit").href=t[4];
- document.getElementById("modal").style.display="flex";
+
+function closeModal(event){
+if(!event || event.target.id==="modal"){
+document.getElementById("modal").style.display = "none";
 }
-function closeModal(){
- document.getElementById("modal").style.display="none";
 }
-categories();
-render();
+
+function renderTools(){
+const query = document.getElementById("searchInput").value.toLowerCase();
+const grid = document.getElementById("toolGrid");
+
+const filtered = tools.filter(tool=>{
+const matchesCategory = activeCategory==="All" ||
+(activeCategory==="Favorites" ? favorites.includes(tool[0]) : tool[1]===activeCategory);
+
+const matchesSearch = tool.join(" ").toLowerCase().includes(query);
+return matchesCategory && matchesSearch;
+});
+
+grid.innerHTML = "";
+
+if(filtered.length===0){
+grid.innerHTML = '<div class="empty">No tools found. Try another search.</div>';
+return;
+}
+
+filtered.forEach(tool=>{
+const [name,category,icon,description,url] = tool;
+const isFavorite = favorites.includes(name);
+
+const card = document.createElement("article");
+card.className = "tool-card";
+
+const iconBox = document.createElement("div");
+iconBox.className = "tool-icon";
+iconBox.textContent = icon;
+
+const title = document.createElement("h3");
+title.textContent = name;
+
+const desc = document.createElement("p");
+desc.textContent = description;
+
+const bottom = document.createElement("div");
+bottom.className = "tool-bottom";
+
+const tag = document.createElement("span");
+tag.className = "tag";
+tag.textContent = category;
+
+const actions = document.createElement("div");
+actions.className = "tool-actions";
+
+const favoriteButton = document.createElement("button");
+favoriteButton.textContent = isFavorite ? "❤️" : "♡";
+favoriteButton.setAttribute("aria-label","Toggle favorite");
+favoriteButton.onclick = ()=>toggleFavorite(name);
+
+const detailsButton = document.createElement("button");
+detailsButton.textContent = "Details";
+detailsButton.onclick = ()=>showDetails(name,description);
+
+const visitButton = document.createElement("button");
+visitButton.textContent = "Visit ↗";
+visitButton.onclick = ()=>window.open(url,"_blank","noopener,noreferrer");
+
+actions.append(favoriteButton,detailsButton,visitButton);
+bottom.append(tag,actions);
+card.append(iconBox,title,desc,bottom);
+grid.appendChild(card);
+});
+}
+
+renderTools();
 </script>
+
 </body>
 </html>
