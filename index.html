@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090914">
-<title>AIZONE — Discover AI Tools</title>
-<meta name="description" content="Discover useful AI tools for creativity, productivity, design, writing, coding and more.">
+<meta name="description" content="Discover AI tools for creativity, productivity, design, writing, coding and more.">
 <meta name="google-site-verification" content="yWQTEpBqiyzwZ2GtL2ew3WHrQvmnIq3dW9NcVAtfd-o">
+<title>AIZONE — Discover AI Tools</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -17,44 +17,83 @@
 --border:#302b49;
 --purple:#9568ff;
 --muted:#aaa7bd;
+--text:#fff;
+--card:#19192e;
+--header:#101020;
+--soft:#25213a;
 }
 
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:white;font-family:Arial,sans-serif}
+body{
+background:var(--bg);
+color:var(--text);
+font-family:Arial,sans-serif;
+transition:background .25s,color .25s;
+}
+
+body[data-theme="light"]{
+--bg:#f5f3ff;
+--panel:#fff;
+--border:#ded7ef;
+--purple:#7545df;
+--muted:#696276;
+--text:#211936;
+--card:#fff;
+--header:#fff;
+--soft:#eee9fa;
+}
+
 button,input{font:inherit}
+html{scroll-behavior:smooth}
 
 header{
-height:72px;
+min-height:72px;
 padding:0 6%;
 display:flex;
 align-items:center;
 justify-content:space-between;
-background:#101020;
+background:var(--header);
 border-bottom:1px solid var(--border);
 position:sticky;
 top:0;
 z-index:10;
 }
 
-.logo{font-size:26px;font-weight:900;color:#b99aff}
-.logo span{color:white}
-nav{display:flex;gap:24px}
-nav a{color:#ddd;text-decoration:none;font-size:14px}
-nav a:hover{color:#b99aff}
+.logo{
+font-size:26px;
+font-weight:900;
+color:#b99aff;
+}
+.logo span{color:var(--text)}
 
-.menu{
-display:none;
-background:#25213a;
-color:white;
+nav{display:flex;gap:22px;align-items:center}
+nav a{
+color:var(--text);
+text-decoration:none;
+font-size:14px;
+}
+nav a:hover{color:var(--purple)}
+
+.header-actions{display:flex;align-items:center;gap:10px}
+
+.menu,.theme-toggle{
+background:var(--soft);
+color:var(--text);
 border:1px solid var(--border);
 padding:9px 13px;
 border-radius:9px;
+cursor:pointer;
 }
+
+.menu{display:none}
 
 .hero{
 text-align:center;
 padding:85px 15px 65px;
-background:radial-gradient(ellipse at top,#39236d,#090914 75%);
+background:radial-gradient(ellipse at top,#39236d,var(--bg) 75%);
+}
+
+body[data-theme="light"] .hero{
+background:radial-gradient(ellipse at top,#dfd0ff,var(--bg) 75%);
 }
 
 .pill{
@@ -81,7 +120,7 @@ color:transparent;
 }
 
 .hero p{
-color:#c0bdcf;
+color:var(--muted);
 line-height:1.8;
 max-width:600px;
 margin:auto;
@@ -92,7 +131,7 @@ max-width:620px;
 margin:30px auto 0;
 display:flex;
 align-items:center;
-background:#17172b;
+background:var(--card);
 border:1px solid #57418d;
 border-radius:14px;
 padding:5px 15px;
@@ -104,7 +143,7 @@ padding:14px;
 background:transparent;
 border:0;
 outline:0;
-color:white;
+color:var(--text);
 }
 
 .stats{
@@ -118,117 +157,52 @@ flex-wrap:wrap;
 .stat strong{
 display:block;
 font-size:25px;
-color:#c1a5ff;
+color:#b99aff;
 }
-
-.stat small{color:#aaa;font-size:12px}
+.stat small{color:var(--muted);font-size:12px}
 
 .section{padding:40px 6%}
 .heading{margin-bottom:22px}
 .heading h2{font-size:25px}
 .muted{color:var(--muted);font-size:13px}
 
-.categories{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-}
-
-.cat{
-padding:11px 17px;
-border:1px solid var(--border);
-border-radius:10px;
-background:var(--panel);
-color:#ddd;
-cursor:pointer;
-}
-
-.cat.active,.cat:hover{
-background:var(--purple);
-color:white;
-}
-
-/* PREMIUM FEATURED SECTIONS */
-
 .featured-section{padding:35px 6% 15px}
-
-.featured-title{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:8px;
-}
-
+.featured-title{margin-bottom:8px}
 .featured-title h2{font-size:25px}
-
 .featured-subtitle{
 color:var(--muted);
 font-size:13px;
 margin-bottom:22px;
 }
 
-.featured-grid{
+.featured-grid,.tool-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:20px;
 }
 
-.featured-card{
-background:linear-gradient(145deg,#211b3c,#111120);
-border:1px solid #49366f;
-border-radius:16px;
-padding:22px;
-transition:.25s;
-}
-
-.featured-card:hover{
-transform:translateY(-5px);
-border-color:#b99aff;
-box-shadow:0 10px 30px #9568ff30;
-}
-
-.featured-label{
-display:inline-block;
-font-size:11px;
-padding:6px 10px;
-border-radius:20px;
-background:#39285c;
-color:#d5c1ff;
-margin-bottom:15px;
-}
-
-.featured-card h3{
-font-size:18px;
-margin-bottom:9px;
-}
-
-.featured-card p{
-color:var(--muted);
-font-size:13px;
-line-height:1.6;
-min-height:42px;
-}
-
-.featured-card .tool-icon{margin-bottom:15px}
-
-.tool-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-}
-
-.tool-card{
-background:linear-gradient(145deg,#19192e,#111120);
+.featured-card,.tool-card{
+background:var(--card);
 border:1px solid var(--border);
 border-radius:16px;
 padding:22px;
 transition:.25s;
 }
 
-.tool-card:hover{
+.featured-card{
+background:linear-gradient(145deg,#211b3c,#111120);
+border-color:#49366f;
+}
+
+body[data-theme="light"] .featured-card{
+background:#fff;
+border-color:var(--border);
+}
+
+.featured-card:hover,.tool-card:hover{
 transform:translateY(-5px);
 border-color:var(--purple);
-box-shadow:0 10px 30px #0005;
+box-shadow:0 10px 30px #0003;
 }
 
 .tool-icon{
@@ -242,9 +216,22 @@ font-size:25px;
 margin-bottom:17px;
 }
 
-.tool-card h3{font-size:18px;margin-bottom:9px}
+.featured-label{
+display:inline-block;
+font-size:11px;
+padding:6px 10px;
+border-radius:20px;
+background:#39285c;
+color:#d5c1ff;
+margin-bottom:15px;
+}
 
-.tool-card p{
+.featured-card h3,.tool-card h3{
+font-size:18px;
+margin-bottom:9px;
+}
+
+.featured-card p,.tool-card p{
 color:var(--muted);
 font-size:13px;
 line-height:1.6;
@@ -255,7 +242,7 @@ min-height:42px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:20px;
+margin-top:18px;
 gap:8px;
 }
 
@@ -267,18 +254,38 @@ padding:6px 10px;
 border-radius:20px;
 }
 
-.tool-actions{display:flex;gap:8px}
+.tool-actions{display:flex;gap:7px}
 
 .tool-actions button{
 border:1px solid var(--border);
-background:#25213a;
-color:white;
-padding:8px 11px;
+background:var(--soft);
+color:var(--text);
+padding:8px 10px;
 border-radius:8px;
 cursor:pointer;
 }
 
-.tool-actions button:hover{background:var(--purple)}
+.tool-actions button:hover{background:var(--purple);color:white}
+
+.categories{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.cat{
+padding:11px 17px;
+border:1px solid var(--border);
+border-radius:10px;
+background:var(--panel);
+color:var(--text);
+cursor:pointer;
+}
+
+.cat.active,.cat:hover{
+background:var(--purple);
+color:white;
+}
 
 .empty{
 text-align:center;
@@ -287,8 +294,39 @@ color:var(--muted);
 grid-column:1/-1;
 }
 
+/* RATINGS */
+
+.rating-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+margin-top:15px;
+flex-wrap:wrap;
+}
+
+.rating-stars{display:flex;gap:3px}
+
+.rating-stars button{
+background:transparent;
+border:0;
+color:#777;
+font-size:21px;
+cursor:pointer;
+padding:2px;
+}
+
+.rating-stars button.selected{color:#ffbd35}
+
+.rating-text{
+font-size:12px;
+color:var(--muted);
+}
+
+/* ABOUT */
+
 .about{
-background:#121225;
+background:var(--header);
 border-top:1px solid var(--border);
 border-bottom:1px solid var(--border);
 text-align:center;
@@ -305,9 +343,13 @@ line-height:1.8;
 footer{
 padding:30px 15px;
 text-align:center;
-color:#888;
+color:var(--muted);
 font-size:13px;
 }
+
+footer a{color:#b99aff;text-decoration:none}
+
+/* MODAL */
 
 .modal{
 display:none;
@@ -323,14 +365,13 @@ padding:20px;
 .modal-box{
 width:100%;
 max-width:430px;
-background:#19192e;
+background:var(--card);
 border:1px solid var(--border);
 border-radius:18px;
 padding:25px;
 }
 
 .modal-box h2{margin-bottom:12px}
-
 .modal-box p{
 color:var(--muted);
 line-height:1.7;
@@ -347,10 +388,8 @@ border-radius:9px;
 cursor:pointer;
 }
 
-@media(max-width:650px){
-
-header{padding:0 5%;height:65px}
-
+@media(max-width:750px){
+header{padding:0 5%;min-height:65px}
 .menu{display:block}
 
 nav{
@@ -360,18 +399,22 @@ top:65px;
 left:0;
 right:0;
 padding:20px;
-background:#101020;
+background:var(--header);
 flex-direction:column;
+align-items:flex-start;
 border-bottom:1px solid var(--border);
 }
 
 nav.show{display:flex}
-
 .hero{padding:65px 15px 50px}
 .stats{gap:25px}
 .section{padding:35px 5%}
 .featured-section{padding:30px 5% 10px}
+}
 
+@media(max-width:380px){
+.logo{font-size:22px}
+.theme-toggle,.menu{padding:8px 10px}
 }
 </style>
 </head>
@@ -381,7 +424,12 @@ nav.show{display:flex}
 <header>
 <div class="logo">AI<span>ZONE</span></div>
 
-<button class="menu" onclick="toggleMenu()" aria-label="Open navigation menu">☰</button>
+<div class="header-actions">
+<button class="theme-toggle" id="themeButton"
+onclick="toggleTheme()" aria-label="Change theme">🌙</button>
+<button class="menu" onclick="toggleMenu()"
+aria-label="Open navigation">☰</button>
+</div>
 
 <nav id="nav">
 <a href="#home">Home</a>
@@ -393,7 +441,6 @@ nav.show{display:flex}
 </header>
 
 <section class="hero" id="home">
-
 <div class="pill">✨ YOUR AI DISCOVERY PLATFORM</div>
 
 <h1>Discover the Future<br>with <span>AI Tools</span></h1>
@@ -406,59 +453,35 @@ writing, coding and more — all in one place.
 <div class="searchbox">
 <span>🔎</span>
 <input type="text" id="searchInput"
-placeholder="Search AI tools..."
-oninput="renderTools()">
+placeholder="Search AI tools..." oninput="renderTools()">
 </div>
 
 <div class="stats">
-<div class="stat"><strong>50+</strong><small>AI TOOLS</small></div>
-<div class="stat"><strong>7</strong><small>CATEGORIES</small></div>
+<div class="stat"><strong id="toolCount">49</strong><small>AI TOOLS</small></div>
+<div class="stat"><strong>6</strong><small>CATEGORIES</small></div>
 <div class="stat"><strong>FREE</strong><small>TO EXPLORE</small></div>
 </div>
-
 </section>
-
-<!-- TRENDING SECTION -->
 
 <section class="featured-section" id="trending">
-
-<div class="featured-title">
-<h2>🔥 Trending AI Tools</h2>
-</div>
-
-<p class="featured-subtitle">
-Explore our handpicked trending AI tools.
-</p>
-
+<div class="featured-title"><h2>🔥 Trending AI Tools</h2></div>
+<p class="featured-subtitle">Explore our handpicked trending AI tools.</p>
 <div class="featured-grid" id="trendingGrid"></div>
-
 </section>
 
-<!-- POPULAR SECTION -->
-
 <section class="featured-section" id="popular">
-
-<div class="featured-title">
-<h2>⭐ Popular AI Tools</h2>
-</div>
-
-<p class="featured-subtitle">
-Discover our handpicked popular AI tools.
-</p>
-
+<div class="featured-title"><h2>⭐ Popular AI Tools</h2></div>
+<p class="featured-subtitle">Discover our handpicked popular AI tools.</p>
 <div class="featured-grid" id="popularGrid"></div>
-
 </section>
 
 <section class="section" id="tools">
-
 <div class="heading">
 <h2>Explore AI Tools 🚀</h2>
 <p class="muted">Find the perfect AI tool for your next idea.</p>
 </div>
 
-<div class="categories" id="categories">
-
+<div class="categories">
 <button class="cat active" onclick="setCategory('All',this)">All</button>
 <button class="cat" onclick="setCategory('Chat',this)">Chat</button>
 <button class="cat" onclick="setCategory('Image',this)">Image</button>
@@ -467,15 +490,14 @@ Discover our handpicked popular AI tools.
 <button class="cat" onclick="setCategory('Writing',this)">Writing</button>
 <button class="cat" onclick="setCategory('Coding',this)">Coding</button>
 <button class="cat" onclick="setCategory('Favorites',this)">❤️ Favorites</button>
-
 </div>
 
 <div class="heading" style="margin-top:30px">
 <h2 id="listTitle">All AI Tools</h2>
+<p class="muted" id="resultCount"></p>
 </div>
 
 <div class="tool-grid" id="toolGrid"></div>
-
 </section>
 
 <section class="about" id="about">
@@ -501,9 +523,7 @@ learn and work smarter.
 </div>
 
 <script>
-
 const tools = [
-
 ["ChatGPT","Chat","💬","AI assistant for answering questions and helping with tasks.","https://chatgpt.com/"],
 ["Google Gemini","Chat","✨","Google's AI assistant for ideas, learning and productivity.","https://gemini.google.com/"],
 ["Claude","Chat","🧠","AI assistant for writing, analysis and problem solving.","https://claude.ai/"],
@@ -559,39 +579,59 @@ const tools = [
 ["v0","Coding","🪄","Generate user interface designs and code.","https://v0.app/"],
 ["Phind","Coding","🔍","AI search and assistance for developers.","https://www.phind.com/"],
 ["Tabnine","Coding","⌨️","AI code completion and development assistance.","https://www.tabnine.com/"]
-
 ];
 
-// TRENDING AND POPULAR LISTS
-
-const trendingTools = [
-"Claude",
-"Perplexity",
-"Runway",
-"Kling AI",
-"ElevenLabs",
-"Cursor"
+const trendingTools=[
+"Claude","Perplexity","Runway","Kling AI","ElevenLabs","Cursor"
 ];
 
-const popularTools = [
-"ChatGPT",
-"Google Gemini",
-"Canva AI",
-"CapCut",
-"Grammarly",
-"GitHub Copilot"
+const popularTools=[
+"ChatGPT","Google Gemini","Canva AI","CapCut","Grammarly","GitHub Copilot"
 ];
 
-let activeCategory = "All";
+let activeCategory="All";
+let favorites=[];
+let toolRatings={};
 
-let favorites = [];
-
+function loadStorage(key,fallback){
 try{
-favorites = JSON.parse(localStorage.getItem("aizone-favorites") || "[]");
-if(!Array.isArray(favorites)) favorites = [];
+const value=JSON.parse(localStorage.getItem(key)||"null");
+return value===null?fallback:value;
 }catch(error){
-favorites = [];
+return fallback;
 }
+}
+
+favorites=loadStorage("aizone-favorites",[]);
+if(!Array.isArray(favorites)) favorites=[];
+
+toolRatings=loadStorage("aizone-ratings",{});
+if(!toolRatings || typeof toolRatings!=="object") toolRatings={};
+
+function saveStorage(key,value){
+try{
+localStorage.setItem(key,JSON.stringify(value));
+}catch(error){}
+}
+
+/* THEME */
+
+function applyTheme(theme){
+document.body.dataset.theme=theme;
+document.getElementById("themeButton").textContent=
+theme==="light"?"☀️":"🌙";
+saveStorage("aizone-theme",theme);
+}
+
+function toggleTheme(){
+const current=document.body.dataset.theme||"dark";
+applyTheme(current==="dark"?"light":"dark");
+}
+
+const savedTheme=loadStorage("aizone-theme","dark");
+applyTheme(savedTheme==="light"?"light":"dark");
+
+/* NAVIGATION */
 
 function toggleMenu(){
 document.getElementById("nav").classList.toggle("show");
@@ -603,9 +643,10 @@ document.getElementById("nav").classList.remove("show");
 });
 });
 
-function setCategory(category,button){
+/* CATEGORIES */
 
-activeCategory = category;
+function setCategory(category,button){
+activeCategory=category;
 
 document.querySelectorAll(".cat").forEach(b=>{
 b.classList.remove("active");
@@ -613,196 +654,222 @@ b.classList.remove("active");
 
 button.classList.add("active");
 
-document.getElementById("listTitle").textContent =
-category === "All" ? "All AI Tools" :
-category === "Favorites" ? "Your Favorite Tools" :
-category + " Tools";
+document.getElementById("listTitle").textContent=
+category==="All"?"All AI Tools":
+category==="Favorites"?"Your Favorite Tools":
+category+" Tools";
 
 renderTools();
 }
 
-function toggleFavorite(name){
+/* FAVORITES */
 
+function toggleFavorite(name){
 if(favorites.includes(name)){
-favorites = favorites.filter(x=>x!==name);
+favorites=favorites.filter(x=>x!==name);
 }else{
 favorites.push(name);
 }
 
-try{
-localStorage.setItem("aizone-favorites",JSON.stringify(favorites));
-}catch(error){}
-
+saveStorage("aizone-favorites",favorites);
 renderTools();
 }
 
+/* RATINGS */
+
+function rateTool(name,rating){
+toolRatings[name]=rating;
+saveStorage("aizone-ratings",toolRatings);
+renderTools();
+renderFeatured("trendingGrid",trendingTools,"🔥 TRENDING");
+renderFeatured("popularGrid",popularTools,"⭐ POPULAR");
+}
+
+function createRating(name){
+const row=document.createElement("div");
+row.className="rating-row";
+
+const stars=document.createElement("div");
+stars.className="rating-stars";
+
+const current=Number(toolRatings[name])||0;
+
+for(let i=1;i<=5;i++){
+const button=document.createElement("button");
+button.type="button";
+button.textContent=i<=current?"★":"☆";
+if(i<=current) button.classList.add("selected");
+button.setAttribute("aria-label",`Rate ${name} ${i} stars`);
+button.onclick=()=>rateTool(name,i);
+stars.appendChild(button);
+}
+
+const text=document.createElement("span");
+text.className="rating-text";
+text.textContent=current?`Your rating: ${current}/5`:"Rate this tool";
+
+row.append(stars,text);
+return row;
+}
+
+/* DETAILS */
+
 function showDetails(name,description){
-
-document.getElementById("modalTitle").textContent = name;
-document.getElementById("modalDescription").textContent = description;
-document.getElementById("modal").style.display = "flex";
-
+document.getElementById("modalTitle").textContent=name;
+document.getElementById("modalDescription").textContent=description;
+document.getElementById("modal").style.display="flex";
 }
 
 function closeModal(event){
-
-if(!event || event.target.id==="modal"){
-document.getElementById("modal").style.display = "none";
+if(!event||event.target.id==="modal"){
+document.getElementById("modal").style.display="none";
+}
 }
 
+/* SAFE VISIT */
+
+function visitTool(url){
+const link=document.createElement("a");
+link.href=url;
+link.target="_blank";
+link.rel="noopener noreferrer";
+link.click();
 }
 
-// TRENDING AND POPULAR RENDER FUNCTION
+/* FEATURED SECTIONS */
 
 function renderFeatured(gridId,toolNames,label){
-
-const grid = document.getElementById(gridId);
-grid.innerHTML = "";
+const grid=document.getElementById(gridId);
+grid.innerHTML="";
 
 toolNames.forEach(name=>{
+const tool=tools.find(t=>t[0]===name);
+if(!tool)return;
 
-const tool = tools.find(t=>t[0]===name);
-if(!tool) return;
+const card=document.createElement("article");
+card.className="featured-card";
 
-const card = document.createElement("article");
-card.className = "featured-card";
+const icon=document.createElement("div");
+icon.className="tool-icon";
+icon.textContent=tool[2];
 
-const icon = document.createElement("div");
-icon.className = "tool-icon";
-icon.textContent = tool[2];
+const badge=document.createElement("span");
+badge.className="featured-label";
+badge.textContent=label;
 
-const badge = document.createElement("span");
-badge.className = "featured-label";
-badge.textContent = label;
+const title=document.createElement("h3");
+title.textContent=tool[0];
 
-const title = document.createElement("h3");
-title.textContent = tool[0];
+const desc=document.createElement("p");
+desc.textContent=tool[3];
 
-const desc = document.createElement("p");
-desc.textContent = tool[3];
+const rating=createRating(tool[0]);
 
-const bottom = document.createElement("div");
-bottom.className = "tool-bottom";
+const bottom=document.createElement("div");
+bottom.className="tool-bottom";
 
-const tag = document.createElement("span");
-tag.className = "tag";
-tag.textContent = tool[1];
+const tag=document.createElement("span");
+tag.className="tag";
+tag.textContent=tool[1];
 
-const visit = document.createElement("button");
-visit.textContent = "Visit ↗";
+const visit=document.createElement("button");
+visit.textContent="Visit ↗";
+visit.onclick=()=>visitTool(tool[4]);
 
-visit.onclick = ()=>{
-window.open(tool[4],"_blank","noopener,noreferrer");
-};
-
-const actions = document.createElement("div");
-actions.className = "tool-actions";
+const actions=document.createElement("div");
+actions.className="tool-actions";
 actions.appendChild(visit);
 
 bottom.append(tag,actions);
-card.append(icon,badge,title,desc,bottom);
-
+card.append(icon,badge,title,desc,rating,bottom);
 grid.appendChild(card);
-
 });
-
 }
 
-// MAIN TOOL RENDER FUNCTION
+/* MAIN TOOL LIST */
 
 function renderTools(){
+const query=document.getElementById("searchInput").value.toLowerCase().trim();
+const grid=document.getElementById("toolGrid");
 
-const query = document.getElementById("searchInput").value.toLowerCase();
-const grid = document.getElementById("toolGrid");
-
-const filtered = tools.filter(tool=>{
-
-const matchesCategory = activeCategory==="All" ||
+const filtered=tools.filter(tool=>{
+const matchesCategory=activeCategory==="All"||
 (activeCategory==="Favorites"
-? favorites.includes(tool[0])
-: tool[1]===activeCategory);
+?favorites.includes(tool[0])
+:tool[1]===activeCategory);
 
-const matchesSearch = tool.join(" ").toLowerCase().includes(query);
-
-return matchesCategory && matchesSearch;
-
+const matchesSearch=tool.join(" ").toLowerCase().includes(query);
+return matchesCategory&&matchesSearch;
 });
 
-grid.innerHTML = "";
+grid.innerHTML="";
+
+document.getElementById("resultCount").textContent=
+`${filtered.length} tools found`;
 
 if(filtered.length===0){
-
-grid.innerHTML =
-'<div class="empty">No tools found. Try another search.</div>';
-
+grid.innerHTML='<div class="empty">No tools found. Try another search.</div>';
 return;
 }
 
 filtered.forEach(tool=>{
+const [name,category,icon,description,url]=tool;
+const isFavorite=favorites.includes(name);
 
-const [name,category,icon,description,url] = tool;
+const card=document.createElement("article");
+card.className="tool-card";
 
-const isFavorite = favorites.includes(name);
+const iconBox=document.createElement("div");
+iconBox.className="tool-icon";
+iconBox.textContent=icon;
 
-const card = document.createElement("article");
-card.className = "tool-card";
+const title=document.createElement("h3");
+title.textContent=name;
 
-const iconBox = document.createElement("div");
-iconBox.className = "tool-icon";
-iconBox.textContent = icon;
+const desc=document.createElement("p");
+desc.textContent=description;
 
-const title = document.createElement("h3");
-title.textContent = name;
+const rating=createRating(name);
 
-const desc = document.createElement("p");
-desc.textContent = description;
+const bottom=document.createElement("div");
+bottom.className="tool-bottom";
 
-const bottom = document.createElement("div");
-bottom.className = "tool-bottom";
+const tag=document.createElement("span");
+tag.className="tag";
+tag.textContent=category;
 
-const tag = document.createElement("span");
-tag.className = "tag";
-tag.textContent = category;
+const actions=document.createElement("div");
+actions.className="tool-actions";
 
-const actions = document.createElement("div");
-actions.className = "tool-actions";
-
-const favoriteButton = document.createElement("button");
-favoriteButton.textContent = isFavorite ? "❤️" : "♡";
+const favoriteButton=document.createElement("button");
+favoriteButton.textContent=isFavorite?"❤️":"♡";
 favoriteButton.setAttribute("aria-label","Toggle favorite");
-favoriteButton.onclick = ()=>toggleFavorite(name);
+favoriteButton.onclick=()=>toggleFavorite(name);
 
-const detailsButton = document.createElement("button");
-detailsButton.textContent = "Details";
-detailsButton.onclick = ()=>showDetails(name,description);
+const detailsButton=document.createElement("button");
+detailsButton.textContent="Details";
+detailsButton.onclick=()=>showDetails(name,description);
 
-const visitButton = document.createElement("button");
-visitButton.textContent = "Visit ↗";
-visitButton.onclick = ()=>{
-window.open(url,"_blank","noopener,noreferrer");
-};
+const visitButton=document.createElement("button");
+visitButton.textContent="Visit ↗";
+visitButton.onclick=()=>visitTool(url);
 
 actions.append(favoriteButton,detailsButton,visitButton);
-
 bottom.append(tag,actions);
 
-card.append(iconBox,title,desc,bottom);
-
+card.append(iconBox,title,desc,rating,bottom);
 grid.appendChild(card);
-
 });
-
 }
 
-// INITIALIZE WEBSITE
+/* INITIALIZE */
+
+document.getElementById("toolCount").textContent=tools.length;
 
 renderFeatured("trendingGrid",trendingTools,"🔥 TRENDING");
-
 renderFeatured("popularGrid",popularTools,"⭐ POPULAR");
-
 renderTools();
 
 </script>
-
 </body>
-  </html>
+</html>
